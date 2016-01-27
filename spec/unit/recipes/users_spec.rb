@@ -1,5 +1,3 @@
-require 'chefspec'
-
 describe 'mw_server_base::users' do
   cached(:chef_runner) do
     stub_command('which sudo').and_return('/usr/bin/sudo')
@@ -27,9 +25,10 @@ describe 'mw_server_base::users' do
     expect(chef_runner).to include_recipe('sudo::default')
   end
 
-  it 'should create users_manage[sysadmin] & users_manage[additional_admin]' do
+  it 'should create users_manage[sysadmin] & users_manage[additional_admin] & not create users_manage[not_admin]' do
     expect(chef_runner).to create_users_manage('sysadmin')
     expect(chef_runner).to create_users_manage('additional_admin')
+    expect(chef_runner).to_not create_users_manage('not_admin')
   end
 
   it 'should create groups sysadmin & additional_admin & not create group not_admin' do
