@@ -1,0 +1,7 @@
+name              'mw_server_base'
+maintainer        'Christian Rodriguez & Leandro Di Tommaso'
+maintainer_email  'christian.rodriguez@mikroways.net leandro.ditommaso@mikroways.net'
+license           'MIT'
+description       'Cookbook to apply the minimal configuration we want to have on every server.'
+long_description  'Cookbook to apply the minimal configuration we want to have on every server.'
+version           '0.1.0'
