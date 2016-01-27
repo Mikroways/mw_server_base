@@ -5,3 +5,6 @@ license           'MIT'
 description       'Cookbook to apply the minimal configuration we want to have on every server.'
 long_description  'Cookbook to apply the minimal configuration we want to have on every server.'
 version           '0.1.0'
+
+depends 'sudo',   '~> 2.7.1'
+depends 'users',  '~> 2.0.2'
