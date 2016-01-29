@@ -1,9 +1,3 @@
-# Basic packages to install.
-default['mw_server_base']['basic_packages'] = {
-  debian: %w(atsar vim locate apt-utils bsdutils htop tmux rsync iftop iotop telnet tcpdump strace sysstat ngrep),
-  rhel: %w(vim mlocate htop tmux rsync iftop iotop telnet tcpdump strace sysstat ngrep)
-}
-
 # Users configuration.
 default['mw_server_base']['authorization']['superadmin_group'] = 'sysadmin'
 # The attribute addition_superadmin_group is useful when one needs to add additional admins
