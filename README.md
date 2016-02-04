@@ -8,11 +8,13 @@ have on every server.
 
 Requirements
 ------------
+
 - Chef 12 or higher.
 - Network accessible package repositories.
 
 Platform Support
 ----------------
+
 The following platforms have been tested:
 
 - Ubuntu 14.04.
@@ -21,32 +23,35 @@ The following platforms have been tested:
 
 Cookbook Dependencies
 ---------------------
+
+- apt
 - chef-vault
+- locale
 - ntp
 - postfix
 - rsyslog
 - sudo
-- ubuntu
+- timezone_lwrp
 - users
+- yum-epel
 
 Recipes Overview
--------
+----------------
 
 This cookbook provides the following recipes:
 
-- *basic_packages*: installs a list of some packages which are important for us to
-  have in our servers.
-- *postfix*: installs Postfix and configures it as a smarthost to use another
+- **basic_packages**: installs a list of some packages which are important for
+  us to have in our servers.
+- **default**: includes ```setup``` and ```postfix``` recipes.
+- **postfix**: installs Postfix and configures it as a smarthost to use another
   server as a relay. Useful to receive server notifications.
-- *users*: creates system users with root privileges using sudo.
-
-There is another recipe in this cookbook:
-
-- *setup*: includes all the recipes above along with apt, locale, ntp and rsyslog.
-  It also configures the timezone.
+- **setup**: includes ```basic_packages``` and ```users``` recipes, along with 
+  *apt*, *locale*, *ntp* and *rsyslog*. It also configures the timezone.
+- **users**: creates system users with root privileges using sudo.
 
 Usage
 -----
+
 Place a dependency on the mw_server_base cookbook in your cookbook's
 metadata.rb:
 
@@ -54,13 +59,16 @@ metadata.rb:
 depends 'mw_server_base', '~> 0.1'
 ```
 
-Then, include in your node's run list each recipe you'd like to use or apply
-mw_server_base::setup.
+After that, if you are setting up a regular server, include in your run list
+```mw_server_base```. If the server is a mailserver, then you should put
+```mw_server_base::setup``` in your run list instead, which excludes ```postfix```
+recipe.
+
 
 License & Authors
 -----------------
 
-* Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)
+- Author:: Leandro Di Tommaso (<leandro.ditommaso@mikroways.net>)
 
 ```text
 Copyright:: 2016 Mikroways
