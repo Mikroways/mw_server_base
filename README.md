@@ -64,6 +64,12 @@ After that, if you are setting up a regular server, include in your run list
 ```mw_server_base::setup``` in your run list instead, which excludes ```postfix```
 recipe.
 
+About mirrors
+-------------
+
+Mirrors are not configured within this cookbook because the would normally be
+implemented in the machine template used. That being not the case, you could
+easily add debian or ubuntu cookbook to set the mirrors.
 
 License & Authors
 -----------------
