@@ -16,3 +16,5 @@ default['mw_server_base']['apt']['first_upgrade'] = true
 
 # Timezone to set up the server with.
 default['mw_server_base']['timezone'] = 'America/Argentina/Buenos_Aires'
+default['mw_server_base']['locale']['lang'] = 'en_US.utf8'
+default['mw_server_base']['locale']['lc_all'] = 'en_US.utf8'
