@@ -13,7 +13,7 @@ describe 'mw_server_base::postfix' do
   it 'should raise an exception when vault item is not specified' do
     chef_run = ChefSpec::SoloRunner.new
     chef_run.node.set['mw_server_base']['postfix']['vault']['item'] = nil
-    expect { chef_run.converge(described_recipe) }.to raise_error(RuntimeError, "Vault item must be specified to be able to setup mail server relay.")
+    expect { chef_run.converge(described_recipe) }.to raise_error(RuntimeError, 'Vault item must be specified to be able to setup mail server relay.')
   end
 
   it 'should include recipe chef-vault::default' do
@@ -33,7 +33,7 @@ describe 'mw_server_base::postfix' do
       chef_run = ChefSpec::SoloRunner.new do |node|
         node.set['mw_server_base']['postfix']['vault']['item'] = 'test'
         expect(ChefVault::Item).to receive(:vault?).with('mailers', 'test').and_return('test')
-        expect(ChefVault::Item).to receive(:load).with('mailers', 'test').and_return({'aliases' => true})
+        expect(ChefVault::Item).to receive(:load).with('mailers', 'test').and_return('aliases' => true)
       end.converge(described_recipe)
       expect(chef_run).to include_recipe('postfix::aliases')
     end
