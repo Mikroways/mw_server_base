@@ -21,3 +21,4 @@ script:
   - /opt/chefdk/embedded/bin/rubocop
   - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
   - /opt/chefdk/embedded/bin/rspec -r spec_helper.rb
+  - /opt/chefdk/embedded/bin/kitchen test all
