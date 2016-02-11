@@ -1,0 +1,5 @@
+{
+  "id": "leandro",
+  "groups": ["sysadmin"],
+  "ssh_keys": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIkBbGX4uwWuiT4qFonk/0GGnDaiswoyqD/QZbrziEOQQCcpHH4EVHpr/Fd9tHQn3GDGARNDMhIYBLt4UaHelHqrVLDkbRnQlaG33VUq9H/ztwQXocfaCW4yjXMdVFQ5d4+u+252bXjG8vhQCaXdPKJXEnKOkpVxukSYys+Ig0uWir2oGf1tzEPwjODivBUbbF0M0/3CJdLVz2bkx4ABqNGRThmtCRhSpnmgNb+lDeX6ulLLRp8OIwGI2UsIdnKes8aroFB8hyHkXfnrYDqvKD59rWxkp8WG4FhtR40ePk5NmRgKcojfSDVfyOqZG2iC/JSaegBV46UbpU3yo9eu2x leandro@scarlett.local"
+}

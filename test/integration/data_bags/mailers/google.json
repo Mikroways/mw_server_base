@@ -1,0 +1,22 @@
+{
+  "id": "google",
+  "relayhost": "smtp.googlemail.com",
+  "port": 587,
+  "username": "user@domain",
+  "password": "pass",
+  "aliases": {
+    "abuse": "root",
+    "clamav": "root",
+    "ftp": "root",
+    "hostmaster": "root",
+    "mailer-daemon": "root",
+    "news": "root",
+    "nobody": "root",
+    "noc": "root",
+    "postmaster": "root",
+    "security": "root",
+    "usenet": "root",
+    "www": "root",
+    "root": "soporte"
+  }
+}
