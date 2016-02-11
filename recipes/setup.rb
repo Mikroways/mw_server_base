@@ -40,10 +40,10 @@ when 'rhel'
   include_recipe 'yum-epel'
 end
 
-timezone node['mw_server_base']['timezone']
-
-include_recipe 'mw_server_base::basic_packages'
 include_recipe 'mw_server_base::users'
+include_recipe 'mw_server_base::basic_packages'
+
+timezone node['mw_server_base']['timezone']
 
 node.set['locale']['lang'] = node['mw_server_base']['locale']['lang']
 node.set['locale']['lc_all'] = node['mw_server_base']['locale']['lc_all']
