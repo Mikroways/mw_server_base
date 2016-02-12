@@ -21,9 +21,11 @@ before_script:
   - /opt/chefdk/bin/foodcritic -V
   - /opt/chefdk/embedded/bin/rspec -v
   - /opt/chefdk/bin/kitchen -v
+  - bundle exec kitchen create all
 
 script:
   - /opt/chefdk/bin/rubocop
   - /opt/chefdk/bin/foodcritic . --exclude spec
   - /opt/chefdk/embedded/bin/rspec -r spec_helper.rb
+  - bundle exec kitchen converge all
   - bundle exec kitchen verify all

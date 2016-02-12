@@ -6,13 +6,6 @@ describe 'mw_server_base::setup - Debian Family Specifics' do
       it { should be_installed }
     end
 
-#    describe file('/root/.apt-upgrade-once') do
-#      it { should exist }
-#      it { should be_a_file }
-#      it { should be_owned_by 'root' }
-#      it { should be_grouped_into 'root' }
-#    end
-
     describe file('/etc/apt/apt.conf.d/50unattended-upgrades') do
       it { should contain "Unattended-Upgrade::Allowed-Origins {\n\"${distro_id} ${distro_codename}-security\";\n};" }
       it { should contain 'Unattended-Upgrade::Mail \"root@localhost\";' }
