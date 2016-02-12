@@ -2,7 +2,7 @@ include_recipe 'chef-vault'
 
 mail_config = node['mw_server_base']['postfix']
 
-fail('Vault item must be specified to be able to setup mail server relay.') \
+raise('Vault item must be specified to be able to setup mail server relay.') \
   unless mail_config['vault']['item']
 
 # Get configuration data from vault (check README for an example).

@@ -63,6 +63,9 @@ suites:
         }
       },
       mw_server_base: {
+        apt: {
+          first_upgrade: false
+        },
         authorization: {
           additional_superadmin_group: ['additional_admin']
         },

@@ -9,16 +9,21 @@ addons:
     packages:
       - chefdk
 
-install: echo "skip bundle install"
+install:
+  - bundle install --deployment --with integration
 
 services: docker
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
   - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - /opt/chefdk/bin/rubocop -v
+  - /opt/chefdk/bin/foodcritic -V
+  - /opt/chefdk/embedded/bin/rspec -v
+  - /opt/chefdk/bin/kitchen -v
 
 script:
-  - /opt/chefdk/embedded/bin/rubocop
-  - /opt/chefdk/embedded/bin/foodcritic . --exclude spec
+  - /opt/chefdk/bin/rubocop
+  - /opt/chefdk/bin/foodcritic . --exclude spec
   - /opt/chefdk/embedded/bin/rspec -r spec_helper.rb
-  - /opt/chefdk/embedded/bin/kitchen test all
+  - bundle exec kitchen verify all

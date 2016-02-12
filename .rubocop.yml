@@ -2,6 +2,8 @@ AllCops:
   Exclude:
     - vendor/**/*
     - Guardfile
+    - metadata.rb
+    - spec/**/*
 
 AlignParameters:
   Enabled: false
