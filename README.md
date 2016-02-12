@@ -15,8 +15,10 @@ Requirements
 Platform Support
 ----------------
 
-The following platforms have been tested:
+The following platforms have been tested with Test Kitchen:
 
+- Debian 7.
+- Ubuntu 12.04.
 - Ubuntu 14.04.
 - CentOS 6.4.
 - CentOS 7.1.
