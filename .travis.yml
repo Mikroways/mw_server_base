@@ -9,6 +9,14 @@ addons:
     packages:
       - chefdk
 
+env:
+  matrix:
+    - PLATFORMS='default-centos-67'
+    - PLATFORMS='default-centos-71'
+    - PLATFORMS='default-debian-7'
+    - PLATFORMS='default-ubuntu-1204'
+    - PLATFORMS='default-ubuntu-1404'
+
 install:
   - bundle install --deployment --with integration
 
@@ -27,5 +35,5 @@ script:
   - /opt/chefdk/bin/rubocop
   - /opt/chefdk/bin/foodcritic . --exclude spec
   - /opt/chefdk/embedded/bin/rspec -r spec_helper.rb
-  - bundle exec kitchen converge all
-  - bundle exec kitchen verify all
+  - travis_retry bundle exec kitchen converge $PLATFORMS
+  - travis_retry bundle exec kitchen verify $PLATFORMS
