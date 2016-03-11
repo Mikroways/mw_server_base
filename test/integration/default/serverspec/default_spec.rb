@@ -1,5 +1,59 @@
 require 'spec_helper'
 
+describe 'mw_server_base::security' do
+  describe iptables do
+    it { should have_rule('-P INPUT DROP') }
+    it { should have_rule('-P FORWARD DROP') }
+    it { should have_rule('-P OUTPUT ACCEPT') }
+  end
+
+  if os[:family].include?('redhat') && Gem::Version.new(os[:release]) < Gem::Version.new("7")
+    describe iptables do
+      it { should have_rule('-A ssh -p tcp -m tcp --dport 22 -m comment --comment "ssh" -j ACCEPT').with_table('filter').with_chain('ssh') }
+      it { should have_rule('-A established -m state --state RELATED,ESTABLISHED -m comment --comment "established" -j ACCEPT').with_table('filter').with_chain('established') }
+      it { should have_rule('-A loopback -i lo -m comment --comment "loopback" -j ACCEPT').with_table('filter').with_chain('loopback') }
+    end
+  else
+    describe iptables do
+      it { should have_rule('-A ssh -p tcp -m tcp --dport 22 -m comment --comment ssh -j ACCEPT').with_table('filter').with_chain('ssh') }
+      it { should have_rule('-A established -m state --state RELATED,ESTABLISHED -m comment --comment established -j ACCEPT').with_table('filter').with_chain('established') }
+      it { should have_rule('-A loopback -i lo -m comment --comment loopback -j ACCEPT').with_table('filter').with_chain('loopback') }
+    end
+  end
+
+  describe file('/bin/su') do
+    it { should be_mode 4750 }
+    it { should be_owned_by 'root' }
+    it { should be_grouped_into 'sysadmin' }
+  end
+
+  describe file('/etc/ssh/sshd_config') do
+    it { should contain 'ChallengeResponseAuthentication no'}
+    it { should contain 'MaxAuthTries 4' }
+    it { should contain 'PasswordAuthentication no' }
+    it { should contain 'PermitRootLogin without-password' }
+    it { should contain 'PrintLastlog yes' }
+    it { should contain 'PrintMotd no' }
+    it { should contain 'PubkeyAuthentication yes' }
+    it { should contain 'Subsystem sftp /usr/lib/openssh/sftp-server' }
+    it { should contain 'TCPKeepAlive yes' }
+    it { should contain 'UseDns no' }
+    it { should contain 'UsePAM yes' }
+    it { should contain 'UsePrivilegeSeparation yes' }
+    it { should contain 'X11Forwarding no' }
+  end
+
+  describe service(service_name_for('ssh')) do
+    it { should be_enabled }
+    it { should be_running }
+  end
+
+  describe service('fail2ban') do
+    it { should be_enabled }
+    it { should be_running }
+  end
+end
+
 describe 'mw_server_base::setup - Debian Family Specifics' do
   if %w(debian ubuntu).include?(os[:family])
     describe package('apt') do

@@ -55,6 +55,7 @@ suites:
   - name: default
     run_list:
       - recipe[mw_server_base]
+      - recipe[mw_server_base::security]
     attributes: {
       authorization: {
         sudo: {

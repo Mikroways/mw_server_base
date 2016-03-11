@@ -6,3 +6,14 @@ else
   set :backend, :cmd
   set :os, family: 'windows'
 end
+
+def service_name_for(service)
+  case service
+  when 'ssh'
+    if %w(debian ubuntu).include?(os[:family])
+      ssh = 'ssh'
+    elsif %w(centos redhat fedora).include?(os[:family])
+      ssh = 'sshd'
+    end
+  end
+end
