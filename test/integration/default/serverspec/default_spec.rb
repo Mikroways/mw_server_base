@@ -7,7 +7,7 @@ describe 'mw_server_base::security' do
     it { should have_rule('-P OUTPUT ACCEPT') }
   end
 
-  if os[:family].include?('redhat') && Gem::Version.new(os[:release]) < Gem::Version.new("7")
+  if os[:family].include?('redhat') && Gem::Version.new(os[:release]) < Gem::Version.new('7')
     describe iptables do
       it { should have_rule('-A ssh -p tcp -m tcp --dport 22 -m comment --comment "ssh" -j ACCEPT').with_table('filter').with_chain('ssh') }
       it { should have_rule('-A established -m state --state RELATED,ESTABLISHED -m comment --comment "established" -j ACCEPT').with_table('filter').with_chain('established') }
@@ -28,7 +28,7 @@ describe 'mw_server_base::security' do
   end
 
   describe file('/etc/ssh/sshd_config') do
-    it { should contain 'ChallengeResponseAuthentication no'}
+    it { should contain 'ChallengeResponseAuthentication no' }
     it { should contain 'MaxAuthTries 4' }
     it { should contain 'PasswordAuthentication no' }
     it { should contain 'PermitRootLogin without-password' }

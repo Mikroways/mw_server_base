@@ -11,9 +11,9 @@ def service_name_for(service)
   case service
   when 'ssh'
     if %w(debian ubuntu).include?(os[:family])
-      ssh = 'ssh'
+      'ssh'
     elsif %w(centos redhat fedora).include?(os[:family])
-      ssh = 'sshd'
+      'sshd'
     end
   end
 end
