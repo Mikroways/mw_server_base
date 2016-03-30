@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe 'mw_server_base::basic_packages' do
-  debian_packages = %w(atsar vim locate apt-utils bsdutils htop tmux rsync iftop iotop telnet tcpdump strace sysstat ngrep iproute)
-  rhel_packages = %w(vim mlocate tmux rsync iotop telnet tcpdump strace sysstat htop iftop ngrep iproute)
+  debian_packages = %w(atsar vim locate apt-utils bsdutils htop tmux rsync iftop iotop telnet tcpdump strace sysstat ngrep iproute haveged)
+  rhel_packages = %w(vim mlocate tmux rsync iotop telnet tcpdump strace sysstat htop iftop ngrep iproute haveged)
 
   platforms_to_test = {
     'ubuntu' => {
