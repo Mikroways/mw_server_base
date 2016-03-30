@@ -28,10 +28,13 @@ Cookbook Dependencies
 
 - apt
 - chef-vault
+- fail2ban
 - locale
 - ntp
+- openssh
 - postfix
 - rsyslog
+- simple_iptables
 - sudo
 - timezone_lwrp
 - users
@@ -47,6 +50,11 @@ This cookbook provides the following recipes:
 - **default**: includes ```setup``` and ```postfix``` recipes.
 - **postfix**: installs Postfix and configures it as a smarthost to use another
   server as a relay. Useful to receive server notifications.
+- **security**: sets up OpenSSH with some customizations for better security and
+  installs Fail2ban. It also sets up a firewall (using private recipe _firewall)
+  which sets DROP policy for INPUT and FORWARD chains and enables access to SSH
+  from everywhere. This recipe is the only one that is not included when using
+  default recipe.
 - **setup**: includes ```basic_packages``` and ```users``` recipes, along with 
   *apt*, *locale*, *ntp* and *rsyslog*. It also configures the timezone.
 - **users**: creates system users with root privileges using sudo.
@@ -65,6 +73,8 @@ After that, if you are setting up a regular server, include in your run list
 ```mw_server_base```. If the server is a mailserver, then you should put
 ```mw_server_base::setup``` in your run list instead, which excludes ```postfix```
 recipe.
+If you need to apply the security customizations, then explicitly include
+```mw_server_base::security``` as it's not included by any other recipe.
 
 About mirrors
 -------------
