@@ -4,7 +4,7 @@ maintainer_email  'leandro.ditommaso@mikroways.net'
 license           'Apache 2.0'
 description       'Cookbook to apply the minimal configuration we want to have on every server.'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version           '0.1.0'
+version           '1.0.0'
 
 supports          'centos'
 supports          'debian'

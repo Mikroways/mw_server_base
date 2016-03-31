@@ -35,5 +35,4 @@ node.default['fail2ban']['services'] = {
 }
 
 include_recipe 'openssh'
-include_recipe 'mw_server_base::_firewall'
 include_recipe 'fail2ban'

@@ -6,7 +6,12 @@ raise('Vault item must be specified to be able to setup mail server relay.') \
   unless mail_config['vault']['item']
 
 # Get configuration data from vault (check README for an example).
-data = chef_vault_item(mail_config['vault']['name'], mail_config['vault']['item'])
+begin
+  data = chef_vault_item(mail_config['vault']['name'], mail_config['vault']['item'])
+rescue
+  raise "The vault is not ready. You may need to run \
+knife vault refresh #{mail_config['vault']['name']} #{mail_config['vault']['item']}."
+end
 
 # Create base hashes if they don't exist.
 node.set['postfix'] = {} unless node['postfix']

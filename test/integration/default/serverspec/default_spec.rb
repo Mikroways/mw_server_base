@@ -1,26 +1,6 @@
 require 'spec_helper'
 
 describe 'mw_server_base::security' do
-  describe iptables do
-    it { should have_rule('-P INPUT DROP') }
-    it { should have_rule('-P FORWARD DROP') }
-    it { should have_rule('-P OUTPUT ACCEPT') }
-  end
-
-  if os[:family].include?('redhat') && Gem::Version.new(os[:release]) < Gem::Version.new('7')
-    describe iptables do
-      it { should have_rule('-A ssh -p tcp -m tcp --dport 22 -m comment --comment "ssh" -j ACCEPT').with_table('filter').with_chain('ssh') }
-      it { should have_rule('-A established -m state --state RELATED,ESTABLISHED -m comment --comment "established" -j ACCEPT').with_table('filter').with_chain('established') }
-      it { should have_rule('-A loopback -i lo -m comment --comment "loopback" -j ACCEPT').with_table('filter').with_chain('loopback') }
-    end
-  else
-    describe iptables do
-      it { should have_rule('-A ssh -p tcp -m tcp --dport 22 -m comment --comment ssh -j ACCEPT').with_table('filter').with_chain('ssh') }
-      it { should have_rule('-A established -m state --state RELATED,ESTABLISHED -m comment --comment established -j ACCEPT').with_table('filter').with_chain('established') }
-      it { should have_rule('-A loopback -i lo -m comment --comment loopback -j ACCEPT').with_table('filter').with_chain('loopback') }
-    end
-  end
-
   describe file('/bin/su') do
     it { should be_mode 4750 }
     it { should be_owned_by 'root' }
