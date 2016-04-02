@@ -10,6 +10,7 @@ default['mw_server_base']['authorization']['sudo']['include_sudoers_d'] = true
 ### Mail relay information ###
 default['mw_server_base']['postfix']['vault']['name'] = 'mailers'
 default['mw_server_base']['postfix']['vault']['item'] = nil
+default['mw_server_base']['postfix']['sasl']['enabled'] = 'no'
 
 # Whether to run apt-get upgrade the first time the recipe is called or not.
 default['mw_server_base']['apt']['first_upgrade'] = true
