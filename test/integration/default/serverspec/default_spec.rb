@@ -55,7 +55,7 @@ end
 
 describe 'mw_server_base::basic_packages' do
   if %w(debian ubuntu).include?(os[:family])
-    packages = %w(atsar vim locate apt-utils bsdutils htop rsync iftop iotop telnet tcpdump strace sysstat ngrep tmux iproute)
+    packages = %w(vim locate apt-utils bsdutils htop rsync iftop iotop telnet tcpdump strace sysstat ngrep tmux iproute)
   elsif %w(centos redhat fedora).include?(os[:family])
     packages = %w(vim-enhanced mlocate htop rsync iftop iotop telnet tcpdump strace sysstat ngrep tmux iproute)
   end
