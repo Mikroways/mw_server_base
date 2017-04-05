@@ -5,6 +5,8 @@ license           'Apache 2.0'
 description       'Cookbook to apply the minimal configuration we want to have on every server.'
 long_description  IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version           '1.0.2'
+issues_url        'https://github.com/Mikroways/mw_server_base/issues' if respond_to?(:issues_url)
+source_url        'https://github.com/Mikroways/mw_server_base' if respond_to?(:source_url)
 
 supports          'centos'
 supports          'debian'

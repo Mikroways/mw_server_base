@@ -5,6 +5,7 @@ driver:
   name: docker
   provision_command: curl -L http://www.chef.io/chef/install.sh | bash
   privileged: true
+  use_sudo: false
 
 provisioner:
   name: chef_zero
